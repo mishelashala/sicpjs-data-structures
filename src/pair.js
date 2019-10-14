@@ -5,7 +5,7 @@ function pair(a, b) {
 }
 
 function isPair(x) {
-  return x.length === 2;
+  return isNull(x) ? false : x.length === 2;
 }
 
 function head(x) {
