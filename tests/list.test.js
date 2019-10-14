@@ -1,5 +1,5 @@
 const { expect } = require("chai");
-const { append, at, filter, len, list, map, reverse } = require("../src/list");
+const { append, at, filter, lastPair, len, list, map, reverse } = require("../src/list");
 
 describe("list", () => {
   it("should create a list of n elements", () => {
@@ -72,5 +72,16 @@ describe("filter", () => {
     expect(len(r)).to.be.equal(2);
     expect(at(0, r)).to.be.equal(2);
     expect(at(1, r)).to.be.equal(4);
+  });
+});
+
+describe("lastPair", () => {
+  it("should return the last pair in the list", () => {
+    const l = list(1, 2, 3, 4);
+    const r = lastPair(l);
+
+    expect(len(r)).to.be.equal(1);
+    expect(at(0, r)).to.be.equal(4);
+    expect(at(1, r)).to.be.equal(null);
   });
 });

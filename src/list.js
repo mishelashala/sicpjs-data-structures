@@ -35,10 +35,15 @@ function at(n, l) {
   return n === 0 ? head(l) : at(n - 1, tail(l));
 }
 
+function lastPair(seq) {
+  return isNull(tail(seq)) ? seq : lastPair(tail(seq));
+}
+
 module.exports = {
   at,
   append,
   filter,
+  lastPair,
   len,
   list,
   map,
