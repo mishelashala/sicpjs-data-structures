@@ -39,10 +39,20 @@ function lastPair(seq) {
   return isNull(tail(seq)) ? seq : lastPair(tail(seq));
 }
 
+function accumulate(op, initial, seq) {
+  return isNull(seq) ? initial : op(head(seq), accumulate(op, initial, tail(seq)));
+}
+
+function interval(a, b) {
+  return a > b ? null : pair(a, interval(a + 1, b));
+}
+
 module.exports = {
+  accumulate,
   at,
   append,
   filter,
+  interval,
   lastPair,
   len,
   list,

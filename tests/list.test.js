@@ -1,5 +1,17 @@
 const { expect } = require("chai");
-const { append, at, filter, lastPair, len, list, map, reverse } = require("../src/list");
+const { pair } = require("../src/pair");
+const {
+  accumulate,
+  append,
+  at,
+  filter,
+  interval,
+  lastPair,
+  len,
+  list,
+  map,
+  reverse,
+} = require("../src/list");
 
 describe("list", () => {
   it("should create a list of n elements", () => {
@@ -83,5 +95,53 @@ describe("lastPair", () => {
     expect(len(r)).to.be.equal(1);
     expect(at(0, r)).to.be.equal(4);
     expect(at(1, r)).to.be.equal(null);
+  });
+});
+
+describe("accumulate", () => {
+  it("should sum every item in the list", () => {
+    const l = list(1, 2, 3);
+    const r = accumulate((x, y) => x + y, 0, l);
+
+    expect(r).to.be.equal(6);
+  });
+
+  it("should multiply every item in the list", () => {
+    const l = list(1, 2, 3);
+    const r = accumulate((x, y) => x * y, 1, l);
+
+    expect(r).to.be.equal(6);
+  });
+
+  it("should preserve the identity of the list", () => {
+    const l = list(1, 2, 3);
+    const r = accumulate(pair, null, l);
+
+    expect(r).to.be.deep.equal(list(1, 2, 3));
+  });
+});
+
+describe("accumulate", () => {
+  it("should create an interval from 0 to 1", () => {
+    const r = interval(0, 1);
+
+    expect(len(r)).to.be.equal(2);
+    expect(at(0, r)).to.be.equal(0);
+    expect(at(1, r)).to.be.equal(1);
+  });
+
+  it("should create an interval from 0 to 2", () => {
+    const r = interval(0, 2);
+
+    expect(len(r)).to.be.equal(3);
+    expect(at(0, r)).to.be.equal(0);
+    expect(at(1, r)).to.be.equal(1);
+    expect(at(2, r)).to.be.equal(2);
+  });
+
+  it("should return null if the interval is not valid", () => {
+    const r = interval(3, 2);
+
+    expect(r).to.be.equal(null);
   });
 });
